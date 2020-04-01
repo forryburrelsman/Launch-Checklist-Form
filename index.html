@@ -5,6 +5,66 @@
         <link rel = "stylesheet" type = "text/css" href = "styles.css" />
         <script src = "script.js"></script>
     </head>
+    <script>
+        //function for updating faultyItems when something is not ready for launch
+        // function faultyItemsUpdate() {
+        //     let pilotNameInput = document.querySelector("input[name=pilotName]");
+           
+             // if (isNaN(pilotNameInput.value) && pilotNameInput.value !== "") {
+            //     //faultyItems.setAttribute("pilotStatus", `Pilot ${pilotNameInput.value} is ready for launch.`)
+            //     //console.log(`Pilot ${pilotNameInput.value} is ready for launch.`);
+            //     let visibleItems = document.getElementById("faultyItems").style.visibility = "visible";
+            //     console.log(visibleItems)
+            // } //else {
+
+        // window.addEventListener("load", function() {
+        //     let faultyItems= document.getElementById("faultyItems");
+        //     faultyItems.addEventListener("submit", faultyItemsUpdate);
+
+           let form = document.querySelector("form");
+           form.addEventListener("submit", function(event) {
+            let pilotNameInput = document.querySelector("input[name=pilotName]");
+            let copilotNameInput = document.querySelector("input[name=copilotName]");
+            let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
+            let cargoMassInput = document.querySelector("input[name=cargoMass]")
+            if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value ==="") {
+                alert("All fields are required!")
+                event.preventDefault();
+            }
+            if (!isNaN(pilotNameInput.value)) {
+                alert("Please enter a valid name for Pilot.")
+                event.preventDefault();
+            }
+            if (!isNaN(copilotNameInput.value)) {
+                alert("Please enter a valid name for Co-pilot.")
+                event.preventDefault();
+            }
+            if (isNaN(fuelLevelInput.value)) {
+                alert("Please enter a number for Fuel Level.")
+                event.preventDefault();
+            }
+            if (isNaN(cargoMassInput.value)) {
+                alert("Please enter a number for Cargo Mass.")
+                event.preventDefault();
+            }
+            document.getElementById("faultyItems").style.visibility = "visible"
+            document.getElementById("pilotStatus").innerHTML = `Pilot ${pilotNameInput.value} is ready for launch.`;
+            // let faultyItems= document.getElementById("faultyItems");
+            //     $('faultyItems').css("visibility" , "visible");
+
+            // if (isNaN(pilotNameInput.value) && pilotNameInput.value !== "") {
+            //     let faultyItems= document.getElementById("faultyItems");
+            //     $('faultyItems').css("visibility" , "visible");
+            //     faultyItems.setAttribute("pilotStatus", `Pilot ${pilotNameInput.value} is ready for launch.`)
+                //console.log(`Pilot ${pilotNameInput.value} is ready for launch.`);
+                //document.getElementById("faultyItems").style.visibility = "visible";
+                
+            } 
+           });
+        
+        });
+     </script>
+
     <body>
         <h1>Launch Checklist Form</h1>
         <div id="missionTarget">
@@ -30,7 +90,7 @@
         <div id="launchStatusCheck">
             <h2 id="launchStatus">Awaiting Information Before Launch</h2>
             <div  id="faultyItems">
-                <ol>
+                <ol>Pilot Info
                     <li id="pilotStatus">Pilot Ready</li>
                     <li id="copilotStatus">Co-pilot Ready</li>
                     <li id="fuelStatus">Fuel level high enough for launch</li>
